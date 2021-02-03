@@ -1,8 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:state_management_examples/screens/add_task_screens.dart';
 import 'package:state_management_examples/widgets/task_list.dart';
 
 class TaskScreen extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +14,7 @@ class TaskScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
         onPressed: () {
-
+          showModalBottomSheet(context: context, builder: (context) => AddTaskScreen());
         },
       ),
       body: Column(
