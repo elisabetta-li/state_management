@@ -1,12 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management_examples/models/task.dart';
+import 'package:state_management_examples/models/task_date.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-  final Function addTaskCallback;
-
-  AddTaskScreen(this.addTaskCallback);
 
 
   @override
@@ -42,7 +41,8 @@ class AddTaskScreen extends StatelessWidget {
             ),
             FlatButton(
               onPressed: (){
-                addTaskCallback(newTaskTitle);
+                Provider.of<TaskDate>(context).addTask(newTaskTitle);
+                Navigator.pop(context);
               },
               child: Text('Add',
               style: TextStyle(
