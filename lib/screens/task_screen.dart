@@ -1,21 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:state_management_examples/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management_examples/models/task_date.dart';
 import 'package:state_management_examples/screens/add_task_screens.dart';
 import 'package:state_management_examples/widgets/task_list.dart';
 
-class TaskScreen extends StatefulWidget {
-
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task(name: 'a'),
-    Task(name: 'b'),
-    Task(name: 'c')
-  ];
+class TaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +17,9 @@ class _TaskScreenState extends State<TaskScreen> {
         onPressed: () {
           showModalBottomSheet(context: context,
               builder: (context) => AddTaskScreen((newTaskTitle){
-                setState(() {
-                  tasks.add(Task(name: newTaskTitle));
-                });
+                // setState(() {
+                //   tasks.add(Task(name: newTaskTitle));
+                // });
                 Navigator.pop(context);
               }));
         },
@@ -57,7 +47,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   fontSize: 50.0,
                   fontWeight: FontWeight.w700,
                 ),),
-                Text('${tasks.length}', style: TextStyle(
+                Text('${Provider.of<TaskDate>(context).taskCount}', style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.white,
                 ),),
@@ -75,7 +65,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20.0),
                   topLeft: Radius.circular(20.0),)
             ),
-              child: TasksList(tasks),
+              child: TasksList(),
           ),
           ),
         ],
